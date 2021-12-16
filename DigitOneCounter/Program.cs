@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace DigitOneCounter
 {
@@ -9,19 +10,17 @@ namespace DigitOneCounter
         {
             int value1, value2;
             bool menu = true;
-
             do
             {
                 Print("Bienvenido al programa contador de dígito 1", 'l');
                 Print("Ingrese el valor inicial: ");
-                int.TryParse(Console.ReadLine(), out value1);
-
+                value1 = ReadValue();
                 Print("Ingrese el valor final: ");
-                int.TryParse(Console.ReadLine(), out value2);
+                value2 = ReadValue();
 
-                int digitCount = CountOne(value1, value2, 0);
+                int digitCount = CountOne(value1, value2);
+              
                 Print("El dígito 1 ha aparecido: ");
-
                 switch (digitCount)
                 {
                     case 1:
@@ -51,10 +50,29 @@ namespace DigitOneCounter
             else
                 Console.Write(arg);
         }
-        static int CountOne(int value1, int value2, int digitCount)
+
+        private static int ReadValue()
         {
+            string input;
+            int val;
+            while (true)
+            {
+                input = Console.ReadLine();
+
+                if (Regex.IsMatch(input, @"^-?\d*\.{0,1}\d+$"))
+                {
+                    int.TryParse(input, out val);
+                    break;
+                }
+                Print($"{input}, no es un valor entero, favor digitar un valor entero", 'l');
+            }
+
+            return val;
+        }
+        static int CountOne(int value1, int value2)
+        {
+            int digitCount = 0, NumbersDigitLength;
             string NumbersDigit = string.Empty;
-            int NumbersDigitLength;
 
             if (value1 < value2 || value1 == value2)
             {
@@ -68,7 +86,7 @@ namespace DigitOneCounter
             }
             else
             {
-                Console.Error.WriteLine("el valor inicial debe ser menor al valor final");
+                Print("el valor inicial debe ser menor al valor final");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
