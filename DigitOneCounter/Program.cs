@@ -9,7 +9,7 @@ namespace DigitOneCounter
         {
             int value1, value2;
             bool menu = true;
-            
+
             do
             {
                 Print("Bienvenido al programa contador de dígito 1", 'l');
@@ -34,6 +34,7 @@ namespace DigitOneCounter
                 }
 
                 Print("Quieres repetir las opciones? ( y / n)", 'l');
+
                 if (Console.ReadLine().ToString() != "y")
                 {
                     menu = false;
@@ -63,7 +64,7 @@ namespace DigitOneCounter
                 }
 
                 NumbersDigitLength = NumbersDigit.Length;
-                digitCount = NumbersDigitLength - NumbersDigit.Replace("1", string.Empty).Length;      
+                digitCount = NumbersDigitLength - NumbersDigit.Replace("1", string.Empty).Length;
             }
             else
             {
