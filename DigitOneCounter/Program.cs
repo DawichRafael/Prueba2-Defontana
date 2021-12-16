@@ -9,7 +9,7 @@ namespace DigitOneCounter
         {
             int value1, value2;
             bool menu = true;
-
+            
             do
             {
                 Print("Bienvenido al programa contador de dígito 1", 'l');
@@ -20,7 +20,7 @@ namespace DigitOneCounter
                 int.TryParse(Console.ReadLine(), out value2);
 
                 int digitCount = CountOne(value1, value2, 0);
-                Print("El dígito 1 se ha repetido: ");
+                Print("El dígito 1 ha aparecido: ");
 
                 switch (digitCount)
                 {
