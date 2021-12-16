@@ -52,30 +52,18 @@ namespace DigitOneCounter
         }
         static int CountOne(int value1, int value2, int digitCount)
         {
+            string NumbersDigit = string.Empty;
+            int NumbersDigitLength;
+
             if (value1 < value2 || value1 == value2)
             {
                 for (; value1 <= value2; value1++)
                 {
-                    if (value1.ToString().Length >= 2 && value1 == Math.Abs(value1))
-                    {
-                        char[] digits = value1.ToString().ToCharArray();
-
-                        for (int x = 0; x < value1.ToString().Length; x++)
-                        {
-                            if (digits[x] == '1')
-                            {
-                                digitCount++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (value1.ToString().Contains('1'))
-                        {
-                            digitCount++;
-                        }
-                    }
+                    NumbersDigit += value1.ToString();
                 }
+
+                NumbersDigitLength = NumbersDigit.Length;
+                digitCount = NumbersDigitLength - NumbersDigit.Replace("1", string.Empty).Length;      
             }
             else
             {
